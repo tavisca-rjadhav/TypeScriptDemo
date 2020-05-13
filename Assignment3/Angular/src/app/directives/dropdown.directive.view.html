@@ -1,7 +1,8 @@
-<div [formGroup]="parentForm">
-<select name="Category" formControlName="Category" class="form-control">
-        <option *ngFor="let c of categories" value="{{c}}"> 
-       {{c}}
-  </option> 
-</select>
+<div class="dropdown" [formGroup]="parentForm"> 
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+   {{selectedCat}}
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" >
+    <a class="dropdown-item" *ngFor="let c of categories" ><input formControlName="Category" type="radio" value={{c}} name="Category" (change)="categorySelected($event)" checked><span> {{c}}</span></a>    
+  </div>
 </div>
