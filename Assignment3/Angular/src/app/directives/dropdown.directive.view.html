@@ -1,0 +1,7 @@
+<div [formGroup]="parentForm">
+<select name="Category" formControlName="Category" class="form-control">
+        <option *ngFor="let c of categories" value="{{c}}"> 
+       {{c}}
+  </option> 
+</select>
+</div>
