@@ -3,6 +3,6 @@
    {{selectedCat}}
   </button>
   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" >
-    <a class="dropdown-item" *ngFor="let c of categories" ><input formControlName="Category" type="radio" value={{c}} name="Category" (change)="categorySelected($event)" checked><span> {{c}}</span></a>    
+    <a class="dropdown-item" *ngFor="let c of categories" ><input formControlName="Category" type="radio" value={{c}} name="Category" (change)="categorySelected($event)"/><span> {{c}}</span></a>    
   </div>
 </div>

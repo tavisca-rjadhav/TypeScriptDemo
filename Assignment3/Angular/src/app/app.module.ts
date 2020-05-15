@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -7,7 +7,10 @@ import { ProductComponent } from './components/productcompopnent/app.product.com
 import { ProductReactiveFormComponent } from './components/productreactiveformcompopnent/app.productreactiveform.component';
 import { TableDirectiveComponent } from './directives/table.component.directive';
 import { DropDownDirectiveComponent } from './directives/dropdown.component.directive';
-
+import './litelements/app.simpleelement.elements'
+import './litelements/app.tableelement.elements'
+import { SimpleElementComponent } from './litelementscomponents/app.simpleelements.component';
+import { TableElementComponent } from './litelementscomponents/app.tableelements.component';
 // imports: array that imports all standard Angular moaulds and custom
 // extenal modules for the current NG App.
 
@@ -30,13 +33,16 @@ import { DropDownDirectiveComponent } from './directives/dropdown.component.dire
     AppComponent, ProductComponent,
     ProductReactiveFormComponent,
     TableDirectiveComponent,
-    DropDownDirectiveComponent
+    DropDownDirectiveComponent,
+    SimpleElementComponent,
+    TableElementComponent
   ],
   imports: [
     BrowserModule, FormsModule, ReactiveFormsModule,
     AppRoutingModule
   ],
+  schemas:[ CUSTOM_ELEMENTS_SCHEMA],
   providers: [],
-  bootstrap: [ProductReactiveFormComponent]
+  bootstrap: [TableElementComponent]
 })
 export class AppModule { }
