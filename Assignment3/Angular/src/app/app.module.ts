@@ -11,6 +11,9 @@ import './litelements/app.simpleelement.elements'
 import './litelements/app.tableelement.elements'
 import { SimpleElementComponent } from './litelementscomponents/app.simpleelements.component';
 import { TableElementComponent } from './litelementscomponents/app.tableelements.component';
+import { OrderListComponent } from './components/ordercomponent/app.orderlist.component';
+import { CustomerListComponent } from './components/customercomponent/app.customerlist.component';
+import { SearchComponent } from './components/searchcomponent/app.searchcomponent.component';
 // imports: array that imports all standard Angular moaulds and custom
 // extenal modules for the current NG App.
 
@@ -35,7 +38,10 @@ import { TableElementComponent } from './litelementscomponents/app.tableelements
     TableDirectiveComponent,
     DropDownDirectiveComponent,
     SimpleElementComponent,
-    TableElementComponent
+    TableElementComponent,
+    CustomerListComponent,
+    OrderListComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule, FormsModule, ReactiveFormsModule,
@@ -43,6 +49,6 @@ import { TableElementComponent } from './litelementscomponents/app.tableelements
   ],
   schemas:[ CUSTOM_ELEMENTS_SCHEMA],
   providers: [],
-  bootstrap: [TableElementComponent]
+  bootstrap: [OrderListComponent, CustomerListComponent, SearchComponent]
 })
 export class AppModule { }
