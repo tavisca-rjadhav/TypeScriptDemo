@@ -58,9 +58,9 @@ export class OrderListComponent implements OnInit{
         this.orders = Orders
     }
     ngOnInit(): void {
-        this.commServ.emitValue.subscribe((id) => {
-            this.customerId = id;
-        })
+        // this.commServ.emitValue.subscribe((id) => {
+        //     this.customerId = id;
+        // })
 
         this.commServ.emitArrayValue.subscribe((ids) => {
             this.customerIds = ids;
@@ -69,12 +69,7 @@ export class OrderListComponent implements OnInit{
 
     get filteredOrdersList() : Array<Order> {
         this.filteredOrders = new Array<Order>();
-        if (this.customerId > 0) {
-           this.filteredOrders = this.orders.filter((e,i) => {
-             return e.CustomerId === this.customerId;
-           });
-        }
-        else if(this.customerIds && this.customerIds.length > 0){
+        if(this.customerIds && this.customerIds.length > 0){
             this.orders.forEach((v, i) =>{
             if(this.customerIds.indexOf(v.CustomerId)> -1)
                 this.filteredOrders.push(v)

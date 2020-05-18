@@ -58,28 +58,28 @@ export class CustomerListComponent implements OnInit{
 
     ngOnInit(): void {
         this.commServ.cityNameEmit.subscribe((name) => {
+            console.log("subscribe" + name)
             this.cityName = name;
         })
 
-        this.commServ.customerNameEmit.subscribe((name) => {
-            this.customerName = name;
-        })
+        // this.commServ.customerNameEmit.subscribe((name) => {
+        //     this.customerName = name;
+        // })
 
-        this.commServ.reset.subscribe((data) => {
-            this.resetStr  = data;
-        })
+        // this.commServ.reset.subscribe((data) => {
+        //     this.resetStr  = data;
+        // })
     }
 
     getRowSelected(customer){
-        this.commServ.onEmitValue(customer.CustomerId);
+        this.commServ.onArrayNumberEmit([customer.CustomerId]);
     }
 
     get filteredCustomerList() : Array<Customer> {
+        console.log("in filtered cust list")
         this.filteredCustomers = new Array<Customer>();
-        if(this.resetStr === "")
-            this.filteredCustomers = this.customers;
-
-        else if (this.cityName != undefined) {
+        
+        if (this.cityName != undefined) {
            this.filteredCustomers = this.customers.filter((e,i) => {
              return e.City === this.cityName;
            });
@@ -93,11 +93,11 @@ export class CustomerListComponent implements OnInit{
         else {
           this.filteredCustomers = this.customers;
         }
-        let numbers= new Array<number>()
-        this.filteredCustomers.forEach((v,i)=>{
-           numbers.push(v.CustomerId);
-        });
-        this.commServ.onArrayNumberEmit(numbers);
+        // let numbers= new Array<number>()
+        // this.filteredCustomers.forEach((v,i)=>{
+        //    numbers.push(v.CustomerId);
+        // });
+        // this.commServ.onArrayNumberEmit(numbers);
         return this.filteredCustomers;
       }
 }

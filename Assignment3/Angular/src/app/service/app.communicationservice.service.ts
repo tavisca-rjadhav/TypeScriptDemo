@@ -7,23 +7,23 @@ import { Injectable, EventEmitter } from '@angular/core';
 )
 export class CommunicationService{
 
-    emitValue: EventEmitter<number>;
+   // emitValue: EventEmitter<number>;
     emitArrayValue: EventEmitter<Array<number>>;
     cityNameEmit: EventEmitter<string>;
     customerNameEmit: EventEmitter<string>;
     reset: EventEmitter<string>;
 
     constructor(){
-       this.emitValue = new EventEmitter<number>();
+    //   this.emitValue = new EventEmitter<number>();
        this.cityNameEmit = new EventEmitter<string>();
        this.emitArrayValue = new EventEmitter<Array<number>>();
        this.customerNameEmit = new EventEmitter<string>();
        this.reset = new EventEmitter<string>();
     }
 
-    onEmitValue(data: number): void {
-        this.emitValue.emit(data);
-    }
+    // onEmitValue(data: number): void {
+    //     this.emitValue.emit(data);
+    // }
 
     onCityEmit(data: string): void {
         this.cityNameEmit.emit(data);

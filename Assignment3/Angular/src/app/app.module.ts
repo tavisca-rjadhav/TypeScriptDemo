@@ -14,6 +14,8 @@ import { TableElementComponent } from './litelementscomponents/app.tableelements
 import { OrderListComponent } from './components/ordercomponent/app.orderlist.component';
 import { CustomerListComponent } from './components/customercomponent/app.customerlist.component';
 import { SearchComponent } from './components/searchcomponent/app.searchcomponent.component';
+import { HttpServiceComponent } from './components/httpservicecomponent/httpservicecomponent';
+import { HttpClientModule } from '@angular/common/http';
 // imports: array that imports all standard Angular moaulds and custom
 // extenal modules for the current NG App.
 
@@ -41,14 +43,15 @@ import { SearchComponent } from './components/searchcomponent/app.searchcomponen
     TableElementComponent,
     CustomerListComponent,
     OrderListComponent,
-    SearchComponent
+    SearchComponent,
+    HttpServiceComponent
   ],
   imports: [
     BrowserModule, FormsModule, ReactiveFormsModule,
-    AppRoutingModule
+    AppRoutingModule, HttpClientModule
   ],
   schemas:[ CUSTOM_ELEMENTS_SCHEMA],
   providers: [],
-  bootstrap: [OrderListComponent, CustomerListComponent, SearchComponent]
+  bootstrap: [SearchComponent, OrderListComponent, CustomerListComponent]
 })
 export class AppModule { }

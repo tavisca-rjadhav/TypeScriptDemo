@@ -1,21 +1,74 @@
 import {LitElement, html, customElement, property, css} from 'lit-element';
+import { Product } from '../models/app.product';
 
 const myStyle = css `
-td, th {
-    padding: 8px;
-    box-sizing: border-box;
-    white-space: nowrap;
-  }
- 
-  tr.iron-selected td {
-    background-color: rgba(0, 0, 0, 0.1);
-  }
-  tr:hover td {
-    background-color: rgba(0, 0, 0, 0.2);
-  }
-  tr td.iron-selected:not(:nth-of-type(1)) {
-    background-color: rgba(255, 255, 0, 0.2);
-  }
+*  {
+	-moz-box-sizing: border-box;
+	-o-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+body {
+	color: #333;
+	font-size: 1em;
+}
+a:link,
+a:visited,
+a:hover,
+a:active {
+	color: #000;
+	text-decoration: none;
+}
+.container {
+  margin: 50px auto;
+  padding: 0 50px;
+  max-width: 960px;
+}
+table { 
+	background: #FFF;
+	border-collapse: collapse;
+	width: 100%;  
+}
+td,
+th { 
+	padding: 4px; 
+	border: 1px solid #CCC;
+	overflow: hidden;
+	text-align: left;
+	vertical-align: middle;
+}
+th { 
+	background-color: #DDD; 
+	font-weight: 400;
+}
+th a,
+td a { 
+	display: block;
+	width: 100%;
+}
+th a.sort-by { 
+	padding-right: 18px;
+	position: relative;
+}
+a.sort-by:before,
+a.sort-by:after {
+	border: 4px solid transparent;
+	content: "";
+	display: block;
+	height: 0;
+	right: 5px;
+	top: 50%;
+	position: absolute;
+	width: 0;
+}
+a.sort-by:before {
+	border-bottom-color: #666;
+	margin-top: -9px;
+}
+a.sort-by:after {
+	border-top-color: #666;
+	margin-top: 1px;
+}
 `;
 
 
@@ -33,10 +86,12 @@ export class TableElement extends LitElement{
 
   @property({type: Array}) dataSource;
     headers:Array<string> = [];
+    products : Array<Product>;
+  
 
    constructor(){
         super();
-      
+      this.products = this.dataSource;
    } 
 
    checkedAll(event){
@@ -56,16 +111,28 @@ export class TableElement extends LitElement{
         }
    
    }
+   
+   sortBy(name){
+     console.log(name)
+    this.dataSource = this.dataSource.sort(this.sortByProductName);
+    
 
+   }
+
+   sortByProductName(p1: Product, p2:Product){
+    if(p1.ProductName > p2.ProductName) return 1;
+    else if(p1.ProductName === p2.ProductName) return 0;
+    else return -1;
+  }
 
   render(){      
-    return html `
-    <h2>Element Table</h2>
-    <div>
-        <table>
+    return html `    
+    <div class="container">
+      <h2>Element Table</h2>
+        <table id="products">
             <thead>
                 <tr>
-                    ${Object.keys(this.dataSource[0]).map(i => html`<th>${i.replace(/([A-Z]+)/g, " $1")}</th>`)}
+                    ${Object.keys(this.dataSource[0]).map(i => html`<th scope="col"><a class="sort-by" @click="${this.sortBy}">${i.replace(/([A-Z]+)/g, " $1")}</a></th>`)}
                     <th><input type="checkbox" name="productCheckbox" name="selectAll" @click="${this.checkedAll}">Select All</th>
                 </tr>
                 

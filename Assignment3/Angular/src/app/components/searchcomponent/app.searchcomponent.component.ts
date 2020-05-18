@@ -36,17 +36,17 @@ export class SearchComponent{
     }
 
     searchByCityName(){
-        console.log(this.cityName)
-        this.resetValue = undefined;
-        this.commServ.onReset(this.resetValue);
+         console.log(this.cityName)
+        // this.resetValue = undefined;
+        // this.commServ.onReset(this.resetValue);
         this.commServ.onCustomerNameEmit(undefined);
         this.commServ.onCityEmit(this.cityName);
     }
 
     searchByCustomerName(){
-        console.log(this.customerName);
-        this.resetValue = undefined;
-        this.commServ.onReset(this.resetValue);
+         console.log(this.customerName);
+        // this.resetValue = undefined;
+        // this.commServ.onReset(this.resetValue);
         this.commServ.onCityEmit(undefined);
         this.commServ.onCustomerNameEmit(this.customerName);
     }
