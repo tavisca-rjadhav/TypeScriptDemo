@@ -14,6 +14,10 @@ import { TableElementComponent } from './litelementscomponents/app.tableelements
 import { OrderListComponent } from './components/ordercomponent/app.orderlist.component';
 import { CustomerListComponent } from './components/customercomponent/app.customerlist.component';
 import { SearchComponent } from './components/searchcomponent/app.searchcomponent.component';
+import { ProductIdDirective } from './directives/check-unique-productid.directive';
+import { ProductIdDirectiveComponent } from './components/directivecomponent/app.directivecomponent.component';
+import { HttpService } from './service/app.httpservice.service';
+import { HttpClientModule } from '@angular/common/http';
 // imports: array that imports all standard Angular moaulds and custom
 // extenal modules for the current NG App.
 
@@ -41,14 +45,16 @@ import { SearchComponent } from './components/searchcomponent/app.searchcomponen
     TableElementComponent,
     CustomerListComponent,
     OrderListComponent,
-    SearchComponent
+    SearchComponent,
+    ProductIdDirective,
+    ProductIdDirectiveComponent
   ],
   imports: [
-    BrowserModule, FormsModule, ReactiveFormsModule,
+    BrowserModule, FormsModule, ReactiveFormsModule, HttpClientModule,
     AppRoutingModule
   ],
   schemas:[ CUSTOM_ELEMENTS_SCHEMA],
-  providers: [],
-  bootstrap: [OrderListComponent, CustomerListComponent, SearchComponent]
+  providers: [ HttpService],
+  bootstrap: [ProductIdDirectiveComponent]
 })
 export class AppModule { }
