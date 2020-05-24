@@ -3,7 +3,10 @@
         <div class="form-group">
             <label>Product Id</label>
             <!--Data Binding Two Way with ngModel-->
-            <input type="text" name="ProductId" [(ngModel)]="product.ProductId" class="form-control">
+            <input type="text" name="ProductId" [(ngModel)]="product.ProductId" class="form-control" required #ProductId="ngModel" [ngClass]="{'alert-danger':ProductId?.invalid && ProductId?.touched}">
+            <div class="alert alert-danger" *ngIf="ProductId.invalid" >
+                <p *ngIf="ProductId.errors.required">Product Id is required</p>
+            </div>
         </div>
         <div class="form-group">
             <label>Product Name</label>
@@ -12,6 +15,7 @@
         <div class="form-group">
             <label>Price</label>
             <input type="text" name="Price" [(ngModel)]="product.Price" class="form-control">
+             <input type="text" class="form-control" [value]="productTax" disabled />
         </div>
         <div class="form-group">
             <label>Category</label>
@@ -31,13 +35,13 @@
 <div class="row">
 <div class="col-md-7">
 <div class="input-group mb-3">
-    
+
   <input type="text" class="form-control" placeholder="Product Name" aria-label="Product Name" aria-describedby="basic-addon2" [(ngModel)]="productName" name="productName">
   <div class="input-group-append">
     <button class="btn btn-outline-secondary" type="button" (click)="searchByProductName()">Search</button>
      <button class="btn btn-outline-secondary" type="button" (click)="reset()">Reset</button>
   </div>
-    
+
   <input type="text" class="form-control" placeholder="Category Name" aria-label="Category Name" aria-describedby="basic-addon2" [(ngModel)]="categoryName" name="categoryName" style="margin-left:20px;">
   <div class="input-group-append">
     <button class="btn btn-outline-secondary" type="button" (click)="searchByCategoryName()">Search</button>
@@ -71,11 +75,11 @@
         </thead>
         <tbody>
             <tr *ngFor="let prd of products" (click)="getSelectedProduct(prd)">
-                <td *ngFor="let h of headers">
+                <td *ngFor="let h of headers" class="{{h}}">
                     {{prd[h]}}
                 </td>
                 <td>
-                   <input type="button" value="Delete" class="btn btn-warning" (click)="delete(prd)"> 
+                   <input type="button" value="Delete" class="btn btn-warning" (click)="delete(prd)">
                 </td>
             </tr>
         </tbody>

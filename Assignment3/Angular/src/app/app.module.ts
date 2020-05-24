@@ -55,6 +55,6 @@ import { HttpClientModule } from '@angular/common/http';
   ],
   schemas:[ CUSTOM_ELEMENTS_SCHEMA],
   providers: [ HttpService],
-  bootstrap: [ProductIdDirectiveComponent]
+  bootstrap: [ProductComponent]
 })
 export class AppModule { }

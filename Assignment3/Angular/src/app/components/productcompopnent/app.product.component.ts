@@ -15,6 +15,7 @@ export class ProductComponent implements OnInit {
   headers: Array<string>;
   productName: string;
   categoryName: string;
+  productTax: number;
 
   constructor() {
     this.product = new Product(0, '', 0, '');
@@ -23,7 +24,7 @@ export class ProductComponent implements OnInit {
     this.logic = new Logic();
     this.headers  =new Array<string>();
   }
-  
+
   // inoked after the ctor
   // write a performance internsicive code
   // whihc we cannot write in ctor
@@ -38,28 +39,29 @@ export class ProductComponent implements OnInit {
   clear(): void {
     this.product = new Product(0, '', 0, '');
   }
-  save(): void {  
+  save(): void {
       this.products = this.logic.saveProducts(this.product);
+      this.productTax = this.product.Price * 0.02;
       console.log(JSON.stringify(this.products));
     }
     getSelectedProduct(p: Product): void {
       this.product = Object.assign({}, p);
     }
-    
+
     delete(p:Product):void{
       let index = this.products.findIndex(prd => prd.ProductId === p.ProductId);
-      this.products.splice(index, 1);    
+      this.products.splice(index, 1);
     }
-    
+
     sortByProductName(){
       let prds = this.products.sort(this.sortProductName);
       this.products = prds;
     }
-    
+
     reverseProductName(){
       this.products.reverse()
     }
-    
+
     sortProductName(p1: Product, p2:Product){
       if(p1.ProductName > p2.ProductName) return 1;
       else if(p1.ProductName === p2.ProductName) return 0;
@@ -73,7 +75,7 @@ export class ProductComponent implements OnInit {
 
     searchByCategoryName(){
       let index = this.products.findIndex(prd => prd.Category.toLowerCase() === this.categoryName.toLowerCase());
-      this.products = [this.dbProducts[index]]; 
+      this.products = [this.dbProducts[index]];
     }
 
     reset(){
@@ -82,4 +84,3 @@ export class ProductComponent implements OnInit {
       this.products = this.dbProducts;
     }
   }
-  
